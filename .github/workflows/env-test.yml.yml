@@ -1,0 +1,21 @@
+name: Example Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: https://example.com
+      API_ENDPOINT: ${{ env.BASE_URL }}/api
+      IMAGE_TAG: v1.0.${{ github.run_number }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Display Environment Variables
+        run: |
+          echo "Base URL: $BASE_URL"
+          echo "API Endpoint: $API_ENDPOINT"
+          echo "Image Tag: $IMAGE_TAG"
